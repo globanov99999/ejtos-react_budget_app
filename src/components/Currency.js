@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { AppContext } from '../context/AppContext';
 
-const Budget = () => {
+const Currency = () => {
     const { totalExpenses  } = useContext(AppContext);
     const [budget, setBudget] = useState('2000');
 
@@ -18,19 +18,26 @@ const Budget = () => {
     }
 
     return (
-        <div className='alert alert-secondary'>
-            <span>Budget: £
-                <input
+        <div className='alert alert-info'>
+            <span>Currency:
+            <input type="text" name="product" list="currencytName" />
+            <datalist id="currencytName">
+                <option>£ Pound</option>
+                <option>₹ Ruppee</option>
+                <option>€ Euro</option>
+                <option>$ Dollar</option>
+            </datalist>
+             {/* <input
                         required='required'
                         type='number'
                         id='budget'
                         value={budget}
-                        style={{ marginLeft: '2rem' , size: 4, width:150}}
+                        style={{ marginLeft: '2rem' , size: 10}}
                         onChange={submitEvent}>
-                        </input>
+                        </input>  */}
             </span>
         </div>
     );
 };
 
-export default Budget;
+export default Currency;
