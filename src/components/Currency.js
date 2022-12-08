@@ -1,32 +1,36 @@
-import React, { useState, useContext } from 'react';
-import { AppContext } from '../context/AppContext';
+import React, { useState } from 'react';
+import Dropdown from 'react-dropdown';
+import 'react-dropdown/style.css';
 
 const Currency = () => {
-    const { totalExpenses  } = useContext(AppContext);
-    const [budget, setBudget] = useState('2000');
+    const setCurrency = useState()[1];
 
-    const submitEvent = (event) => {
-        if(event.target.value > 20000) {
-            alert("The value cannot exceed £20000");
-            return;
-        }
-        if(event.target.value < totalExpenses) {
-            alert("The value cannot be less than spent £"+totalExpenses);
-            return;
-        }
-        setBudget(event.target.value);
-    }
+    const options = [
+        '£ Pound', '₹ Ruppee', '€ Euro', '$ Dollar'
+        ];
+    const defaultOption = options[0];
 
     return (
-        <div className='alert alert-info'>
-            <span>Currency:
+        <div className='alert alert-info' style={{marginLeft: '2rem' , size: 4, width:300, display: "flex"}}>
+            Currency:&nbsp;
+            <div style={{ height:50}}>
+            <Dropdown 
+                options={options} 
+                onChange={setCurrency} 
+                value={defaultOption} 
+                placeholder="Select an option" 
+                style={{ height:20 }}
+            />
+            </div>
+
+            {/* 
             <input type="text" name="product" list="currencytName" />
             <datalist id="currencytName">
                 <option>£ Pound</option>
                 <option>₹ Ruppee</option>
                 <option>€ Euro</option>
                 <option>$ Dollar</option>
-            </datalist>
+            </datalist> */}
              {/* <input
                         required='required'
                         type='number'
@@ -35,7 +39,7 @@ const Currency = () => {
                         style={{ marginLeft: '2rem' , size: 10}}
                         onChange={submitEvent}>
                         </input>  */}
-            </span>
+              
         </div>
     );
 };

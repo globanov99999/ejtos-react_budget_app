@@ -25,7 +25,7 @@ const Budget = () => {
                         type='number'
                         id='budget'
                         value={budget}
-                        style={{ marginLeft: '2rem' , size: 4, width:150}}
+                        style={{ marginLeft: '2rem' , size: 4, width:150, height:20}}
                         onChange={submitEvent}>
                         </input>
             </span>
