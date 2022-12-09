@@ -1,12 +1,20 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
+import { AppContext } from '../context/AppContext';
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 
 const Currency = () => {
-    const setCurrency = useState()[1];
+    const { dispatch } = useContext(AppContext);
+
+    const changeCurrency = (event) => {        
+        dispatch({
+            type: 'CHG_CURRENCY',
+            payload: event['value']
+        });
+    };
 
     const options = [
-        '£ Pound', '₹ Ruppee', '€ Euro', '$ Dollar'
+        ' £ ', ' ₹ ', ' € ', ' $ '
         ];
     const defaultOption = options[0];
 
@@ -16,30 +24,12 @@ const Currency = () => {
             <div style={{ height:50}}>
             <Dropdown 
                 options={options} 
-                onChange={setCurrency} 
+                onChange={changeCurrency} 
                 value={defaultOption} 
                 placeholder="Select an option" 
                 style={{ height:20 }}
             />
-            </div>
-
-            {/* 
-            <input type="text" name="product" list="currencytName" />
-            <datalist id="currencytName">
-                <option>£ Pound</option>
-                <option>₹ Ruppee</option>
-                <option>€ Euro</option>
-                <option>$ Dollar</option>
-            </datalist> */}
-             {/* <input
-                        required='required'
-                        type='number'
-                        id='budget'
-                        value={budget}
-                        style={{ marginLeft: '2rem' , size: 10}}
-                        onChange={submitEvent}>
-                        </input>  */}
-              
+            </div>              
         </div>
     );
 };
